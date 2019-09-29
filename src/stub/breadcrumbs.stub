@@ -1,0 +1,23 @@
+// All {{ModelName}}
+Breadcrumbs::for('{{RouteName}}.index', function ($trail) {
+    $trail->parent('{{GuardName}}home');
+    $trail->push('{{ModelName}}', route('{{RouteName}}.index'));
+});
+
+// {{ModelName}} > Create {{ModelName}}
+Breadcrumbs::for('{{RouteName}}.create', function ($trail) {
+    $trail->parent('{{RouteName}}.index');
+    $trail->push('New {{ModelName}}', route('{{RouteName}}.create'));
+});
+
+// {{ModelName}} > [{{ModelName}} Name]
+Breadcrumbs::for('{{RouteName}}.show', function ($trail, ${{ModelNameLowerCase}}) {
+    $trail->parent('{{RouteName}}.index');
+    $trail->push(${{ModelNameLowerCase}}->title, route('{{RouteName}}.show', ${{ModelNameLowerCase}}->id));
+});
+
+// {{ModelName}} > [{{ModelName}} Name] > Edit {{ModelName}}
+Breadcrumbs::for('{{RouteName}}.edit', function ($trail, ${{ModelNameLowerCase}}) {
+    $trail->parent('{{RouteName}}.show', ${{ModelNameLowerCase}});
+    $trail->push('Edit {{ModelName}}', route('{{RouteName}}.edit', ${{ModelNameLowerCase}}->id));
+});

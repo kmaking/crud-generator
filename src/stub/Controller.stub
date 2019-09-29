@@ -1,0 +1,130 @@
+<?php
+
+namespace App\Http\Controllers{{ControllerNamespace}};
+{{UseController}}
+use App\Http\Requests\{{ModelName}}Request;
+use App\Laratables\{{ModelName}}Laratables;
+use Freshbitsweb\Laratables\Laratables;
+use Illuminate\Http\Request;
+use App\{{ModelPath}};
+
+class {{ModelName}}Controller extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            return Laratables::recordsOf({{ModelName}}::class, {{ModelName}}Laratables::class);
+        }
+        return view('{{ViewPath}}.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('{{ViewPath}}.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  App\Http\Requests\{{ModelName}}Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store({{ModelName}}Request $request)
+    {
+        $data = $request->validated();
+
+        ${{ModelNameLowerCase}} = {{ModelName}}::create($data);
+
+        if(${{ModelNameLowerCase}}) {
+
+            return response_data(
+                true,
+                '{{ModelName}} Created Successfully!..'
+            );
+        }
+
+        return response_data(
+            false, 
+            '{{ModelName}} Creation Failed!..'
+        );
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  App\{{ModelName}} ${{ModelNameLowerCase}}
+     * @return \Illuminate\Http\Response
+     */
+    public function show({{ModelName}} ${{ModelNameLowerCase}})
+    {
+        return view('{{ViewPath}}.show', compact('{{ModelNameLowerCase}}'));   
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  App\{{ModelName}} ${{ModelNameLowerCase}}
+     * @return \Illuminate\Http\Response
+     */
+    public function edit({{ModelName}} ${{ModelNameLowerCase}})
+    {
+        return view('{{ViewPath}}.edit', compact('{{ModelNameLowerCase}}'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  App\Http\Requests\{{ModelName}}Request  $request
+     * @param  App\{{ModelName}} ${{ModelNameLowerCase}}
+     * @return \Illuminate\Http\Response
+     */
+    public function update({{ModelName}}Request $request, {{ModelName}} ${{ModelNameLowerCase}})
+    {
+        $data = $request->validated();
+
+        $status = ${{ModelNameLowerCase}}->update($data);
+
+        if($status) {
+
+            return response_data(
+                true,
+                '{{ModelName}} Updated Successfully!..'
+            );
+        }
+
+        return response_data(
+            false,
+            '{{ModelName}} Updation Failed!..'
+        );
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  App\{{ModelName}} ${{ModelNameLowerCase}}
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy({{ModelName}} ${{ModelNameLowerCase}})
+    {
+        if(${{ModelNameLowerCase}}->delete()) {
+            return response_data(
+                true,
+                '{{ModelName}} Deleted Successfully!..'
+            );
+        }
+        return response_data(
+            false, 
+            '{{ModelName}} Deletion Faild !..'
+        );
+    }
+}

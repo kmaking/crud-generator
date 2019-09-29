@@ -1,0 +1,24 @@
+@extends('{{Layout}}')
+
+@section('title', 'New {{ModelName}}')
+{{Breadcrumbs}}
+@section('content')
+<div class="row">
+    @panel([
+        'title' => 'New {{ModelName}}',
+        'column' => 6,
+        'offset' => 3,
+        'back' => route('{{RouteName}}.index')
+    ])
+
+        @form(['route' => route('{{RouteName}}.store')])
+
+            @include('{{ViewPath}}.form')
+
+            @include('component::form-footer')
+
+        @endform
+
+    @endpanel
+</div>
+@endsection

@@ -1,0 +1,50 @@
+@extends('{{Layout}}')
+
+@section('title', '{{ModelName}}')
+{{Breadcrumbs}}
+@section('content')
+<div class="row">
+    @panel([
+        'title' => '{{ModelName}}',
+        'new' => route('{{RouteName}}.create')
+    ])
+
+        <table class="table table-bordered responsive" data-table-export>
+            <thead>
+                <tr>
+                    <th class="table-plus">#</th>
+                    <th>Name</th>
+                    <th class="datatable-nosort no-export">Action</th>
+                </tr>
+            </thead>
+        </table>
+
+    @endpanel
+</div>
+@endsection
+
+@push('style')
+    @DTStyle
+    @endDTStyle
+@endpush
+
+@push('script')
+
+    @DTScript([
+        'serial_number' => true,
+        'server' => [
+            'url' => route('{{RouteName}}.index'),
+            'columns' => [
+                ['name' => 'id'],
+                ['name' => 'name'],
+                ['name' => 'action', 'orderable' => false, 'searchable' => false],
+            ]
+        ]
+    ])
+    @endDTScript
+
+    @component('component::confirm.link')
+        delete
+    @endcomponent
+
+@endpush

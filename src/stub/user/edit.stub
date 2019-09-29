@@ -1,0 +1,24 @@
+@extends('{{Layout}}')
+
+@section('title', 'Edit {{ModelName}}')
+{{Breadcrumbs}}
+@section('content')
+<div class="row">
+    @panel([
+        'title' => 'Edit {{ModelName}}',
+        'column' => 6,
+        'offset' => 3,
+        'back' => route('{{RouteName}}.index')
+    ])
+
+        @form(['route' => route('{{RouteName}}.update', ${{ModelNameLowerCase}}), 'method' => 'patch'])
+
+            @include('{{ViewPath}}.form', compact('{{ModelNameLowerCase}}'))
+
+            @include('component::form-footer')
+
+        @endform
+
+    @endpanel
+</div>
+@endsection

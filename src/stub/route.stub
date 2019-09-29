@@ -1,0 +1,9 @@
+
+
+/**
+ * Route for {{ModelName}}
+ */
+Route::prefix('{{RoutePrefix}}')->name('{{RouteName}}.')->group(function() { 
+	// 
+});
+Route::resource('{{RoutePrefix}}', '{{ControllerName}}');

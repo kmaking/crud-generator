@@ -1,0 +1,22 @@
+<?php 
+
+namespace App\Laratables;
+
+class {{ModelName}}Laratables
+{
+	/**
+	 * Returns the action column html for datatables.
+	 *
+	 * @param \App\{{ModelName}}
+	 * @return string
+	 */
+	public static function laratablesCustomAction(${{ModelNameLowerCase}})
+	{
+	    return view('component::action', [
+                'prefix' => '{{RouteName}}', 
+                'model' => ${{ModelNameLowerCase}},
+                'excepts' => ['create'],
+                'more' => ''
+            ])->render();
+	}
+}

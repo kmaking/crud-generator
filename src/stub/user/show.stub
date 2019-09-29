@@ -1,0 +1,38 @@
+@extends('{{Layout}}')
+
+@section('title', 'View {{ModelName}}')
+{{Breadcrumbs}}
+@section('content')
+<div class="row">
+    @panel([
+        'title' => 'View {{ModelName}}',
+        'column' => 6,
+        'offset' => 3,
+        'action' => [
+            'prefix' => '{{RouteName}}',
+            'model' => ${{ModelNameLowerCase}},
+            'excepts' => ['show']
+        ],
+        'back' => route('{{RouteName}}.index')
+    ])
+
+        <div class="profile-info">
+        	<ul>
+                <li class="row">
+                    <span class="col-4"><strong>Name</strong></span>
+                    <p class="col-8">{{ ${{ModelNameLowerCase}}->name }}</p>
+                </li>
+        	</ul>
+        </div>
+
+    @endpanel
+</div>
+@endsection
+
+@section('script')
+
+    @component('component::confirm.link')
+        delete
+    @endcomponent
+
+@endsection

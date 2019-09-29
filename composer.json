@@ -1,0 +1,32 @@
+{
+    "name": "kmaking/crud-generator",
+    "description": "KMA CRUD Generator used to generate resourcefull controller with views, Route, UrlPresenter and Laratable",
+    "type": "library",
+    "require": {
+        "freshbitsweb/laratables": "^2.1",
+        "davejamesmiller/laravel-breadcrumbs": "^5.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ketan Ajani",
+            "email": "ketan.m.ajani@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "KMAKing\\CrudGenerator\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "KMAKing\\CrudGenerator\\KMAKingServiceProvider"
+            ]
+        }
+    }
+}

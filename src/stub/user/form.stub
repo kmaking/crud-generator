@@ -1,0 +1,17 @@
+
+            @include('component::form-group.input', [
+                'label' => 'Name',
+                'name' => 'name',
+                'star' => true,
+                'value' => old('name', ${{ModelNameLowerCase}}->name ?? ""),
+                'is_error' => $errors->has('name'),
+                'error' => $errors->first('name')
+            ])
+            
+@push('script')
+
+    @component('component::confirm.form')
+        form-data
+    @endcomponent
+    
+@endpush

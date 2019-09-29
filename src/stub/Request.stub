@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Http\Requests;
+
+use App\{{ModelPath}};
+use KMAKing\CrudGenerator\BaseRequest;
+
+class {{ModelName}}Request extends BaseRequest
+{
+    /**
+     * Determine if the {{ModelName}} is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        $this->setModel({{ModelName}}::class);
+        return $this->isAuthorized();
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        $this->setModel({{ModelName}}::class);
+        $rules = [];
+
+        if ($this->isUpdate() || $this->isStore()) {
+            $rules = array_merge($rules, [
+                // Common Rules for Both Resource
+            ]);
+        }
+
+        if ($this->isStore()) {
+            $rules = array_merge($rules, [
+                // Rules for Store Resource
+            ]);
+        }
+
+        if ($this->isUpdate()) {
+            $rules = array_merge($rules, [
+                // Rules for Update Resource
+            ]);
+        }
+
+
+        return $rules;
+    }
+}
